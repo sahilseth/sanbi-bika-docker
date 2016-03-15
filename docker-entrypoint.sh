@@ -14,7 +14,7 @@ if [[ $START == *"$1"* ]]; then
 
   trap _stop SIGTERM SIGINT
   bin/zeoserver start
-  bin/client1 fg
+  bin/client1 console
   #bin/zeoserver logtail &
 
   child=$!

@@ -1,4 +1,4 @@
-FROM user/python
+FROM hocine/python
 
 RUN useradd --system -U -u 500 plone \
  && mkdir -p /plone /data/filestorage /data/blobstorage \
@@ -26,7 +26,7 @@ RUN buildDeps="curl sudo git python-setuptools python-dev build-essential libssl
       zeo \
  && rm -rf Plone*
 
-RUN git clone https://github.com/hocinebendou/docker.bika.git /bika.lims \
+RUN git clone https://github.com/hocinebendou/bika.in.docker /bika.lims \
  && git clone https://github.com/hocinebendou/bika.health.git /bika.health
 
 RUN git clone https://github.com/rockfruit/bika.sanbi.git /bika.sanbi
@@ -37,9 +37,6 @@ RUN chown -R plone:plone /plone /data /bika.lims /bika.health /bika.sanbi \
  && cd /plone/instance \
  && sudo -u plone bin/buildout
 
-RUN cd /bika.lims && git branch
-RUN ls /bika.lims/bika/lims/browser
-
 RUN SUDO_FORCE_REMOVE=yes apt-get purge -y --auto-remove $buildDeps \
  && apt-get install -y --no-install-recommends $runDeps \
  && rm -rf /var/lib/apt/lists/* \
@@ -48,7 +45,7 @@ RUN SUDO_FORCE_REMOVE=yes apt-get purge -y --auto-remove $buildDeps \
 
 VOLUME /data/filestorage /data/blobstorage
 
-COPY docker-initialize.py docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 8080
