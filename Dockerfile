@@ -26,7 +26,9 @@
 #      zeo \
 # && rm -rf Plone*
 
-FROM plone_one
+
+#FROM plone_one
+FROM plone/plone
 
 RUN git clone https://github.com/hocinebendou/bika.in.docker /bika.lims \
  && git clone https://github.com/hocinebendou/bika.health.git /bika.health
