@@ -2,7 +2,7 @@
 FROM nginx
 
 # Author / Maintainer
-MAINTAINER Thoba Lose 'thoba@sanbi.ac.za'
+MAINTAINER Hocine Bendou & Thoba Lose 'thoba@sanbi.ac.za'
 
 RUN rm /etc/nginx/nginx.conf
 
